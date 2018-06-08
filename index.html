@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Decimal To Binary Conversion</title>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		body{
+			padding: 0px;
+			margin: 0px;
+			text-align: center;
+			background-color: #505c7c;
+		}
+		input{
+			width: 70%;
+			margin: 0px auto;
+			text-align: center;
+			height: 45px;
+			border: 3px solid black;
+			border-radius: 12px;
+		}
+		.title{
+			padding: 30px;
+			background-color: #1d8890cc;
+		}
+		.content{
+			padding-top: 25px;
+		}
+		.footer{
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="title">The MOST EPIC Decimal to Binary Converter</div>
+
+	<div class="content">
+		<input type="text" name="number" placeholder="Enter The Number Here">
+		<h1>Answer will be here .... Type</h1>
+	</div>
+	<p class="footer">By Mohamed Atef</p>
+	<script>
+
+		var input = document.getElementsByTagName('input')[0];
+		var answer = document.getElementsByTagName('h1')[0];
+
+		function hasFraction(num){
+			return !(num === Math.floor(num));
+		}
+
+		function binaryToDecimal(e){
+			var number = e.target.value;
+			if(isNaN(number)) 
+				answer.innerHTML = "Enter Numbers in decimal";
+			
+			else {
+				var binary = "";
+				number = Number(number);
+				function convert(){
+					if(number == 0) return;
+
+					number = number / 2;
+
+					if(hasFraction(number)) 
+						binary = '1'+binary;
+				
+					else 
+						binary = '0'+binary;
+					number = Math.floor(number);
+					convert();
+				}
+				convert();
+				answer.innerHTML = binary;
+			}
+
+		}
+
+		input.addEventListener('keyup',binaryToDecimal);
+
+	</script>
+</body>
+</html>
